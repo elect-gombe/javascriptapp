@@ -128,16 +128,16 @@ function inputEvent(ctx,ein){
     var has_mousePressed;
     
     if('ontouchstart' in window){
-	comp.addEventListener("touchstart", function(e) {
+	ctx.addEventListener("touchstart", function(e) {
 	    var x = e.changedTouches[0].clientX - this.offsetLeft;
 	    var y = e.changedTouches[0].clientY - this.offsetTop;
-	    ein.call(, x, y);
-	}, usecapture);
-	comp.addEventListener("touchmove", function(e) {
+	    ein.call(this, x, y,true);
+	}, false);
+	ctx.addEventListener("touchmove", function(e) {
 	    var x = e.changedTouches[0].clientX - this.offsetLeft;
 	    var y = e.changedTouches[0].clientY - this.offsetTop;
-	    ein.call(comp, x, y);
-	}, usecapture);
+	    ein.call(this,x, y,true);
+	}, false);
     }else{
 	ctx.addEventListener("mousedown", function(event){
 	has_mousePressed = true;
