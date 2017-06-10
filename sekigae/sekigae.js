@@ -52,9 +52,10 @@ window.onload = function()
     for(var i=0;i<width*height;i++){
 	sheet[i] = -1;
     }
-    (function f() {
-	console.log(canvasContext);
-    })();
+
+    document.body.addEventListener('touchmove', function(event) {
+	event.preventDefault();
+    }, false);
 
     var drawingColor = 0;
     var count = 0;
@@ -125,17 +126,31 @@ window.onload = function()
 
 function inputEvent(ctx,ein){
     var has_mousePressed;
-    ctx.addEventListener("mousedown", function(event){
+    
+    if('ontouchstart' in window){
+	comp.addEventListener("touchstart", function(e) {
+	    var x = e.changedTouches[0].clientX - this.offsetLeft;
+	    var y = e.changedTouches[0].clientY - this.offsetTop;
+	    ein.call(, x, y);
+	}, usecapture);
+	comp.addEventListener("touchmove", function(e) {
+	    var x = e.changedTouches[0].clientX - this.offsetLeft;
+	    var y = e.changedTouches[0].clientY - this.offsetTop;
+	    ein.call(comp, x, y);
+	}, usecapture);
+    }else{
+	ctx.addEventListener("mousedown", function(event){
 	has_mousePressed = true;
-	ein.call(this,event.offsetX, event.offsetY,true);
-    },false);
-    ctx.addEventListener("mousemove", function(event) {
-	if (has_mousePressed)
-	    ein.call(this, event.offsetX, event.offsetY,false);
-    }, false);
-    ctx.addEventListener("mouseup", function(e) {
-	has_mousePressed = false;
-    }, false);
+	    ein.call(this,event.offsetX, event.offsetY,true);
+	},false);
+	ctx.addEventListener("mousemove", function(event) {
+	    if (has_mousePressed)
+		ein.call(this, event.offsetX, event.offsetY,false);
+	}, false);
+	ctx.addEventListener("mouseup", function(e) {
+	    has_mousePressed = false;
+	}, false);
+    }
 }
 
 
