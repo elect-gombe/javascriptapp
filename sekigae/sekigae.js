@@ -136,7 +136,7 @@ function inputEvent(ctx,ein){
 	ctx.addEventListener("touchmove", function(e) {
 	    var x = e.changedTouches[0].clientX - this.offsetLeft;
 	    var y = e.changedTouches[0].clientY - this.offsetTop;
-	    ein.call(this,x, y,true);
+	    ein.call(this,x, y,false);
 	}, false);
     }else{
 	ctx.addEventListener("mousedown", function(event){
