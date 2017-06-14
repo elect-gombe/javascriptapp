@@ -49,14 +49,16 @@ window.onload = function()
     })();
 
     
+    var playBtn = document.getElementById('snd');
     var a =  function() {
-	s_finish.load();
-	s_finish.play();
+	if(i==90){
+	    s_finish.load();
+	    s_finish.play();
+	}else{
+	    playBtn.innerHTML = "通知ON";
+	}
     };
-    
-    var playBtn = document.getElementById('msg');
     playBtn.addEventListener('click',a, false);
-
     
     function draw() {
 	g.clearCanvas(g.rgb(255,255,255));
