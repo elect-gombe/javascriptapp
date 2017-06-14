@@ -51,8 +51,8 @@ window.onload = function()
     
     var playBtn = document.getElementById('snd');
     var a =  function() {
+	s_finish.load();
 	if(i==90){
-	    s_finish.load();
 	    s_finish.play();
 	}else{
 	    playBtn.innerHTML = "通知ON";
