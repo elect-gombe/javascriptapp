@@ -65,7 +65,7 @@ window.onload = function()
 	g.setFill(g.rgb(0,0,0));
 	g.drawImage(img,0,Math.floor(20+Math.sin(i++*3.141592*2/15)%2*20));
 
-	if(i < 90){//about 5 minutes.
+	if(i < 30*5*60){//about 5 minutes.
 	    document.getElementById("msg").innerHTML = "Brush your teeth while a few minutes.";
 	    setTimeout(draw,1000/30);
 	}
