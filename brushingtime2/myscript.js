@@ -47,6 +47,17 @@ window.onload = function()
     (function f() {
 	console.log(canvasContext);
     })();
+
+    
+    var a =  function() {
+	s_finish.load();
+	s_finish.play();
+    };
+    
+    var playBtn = document.getElementById('msg');
+    playBtn.addEventListener('click',a, false);
+
+    
     function draw() {
 	g.clearCanvas(g.rgb(255,255,255));
 	g.setFill(g.rgb(0,0,0));
@@ -57,7 +68,7 @@ window.onload = function()
 	    setTimeout(draw,1000/30);
 	}
 	else{
-	    s_finish.play();
+	    a();
 	    document.getElementById("msg").innerHTML = "OK.";
 	}
     }
